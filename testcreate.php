@@ -2,7 +2,8 @@
 include 'config.php';
 
 //creation nouvel article/projet
-if(isset($_POST['titre'])){
+
+if(!empty($_POST['titre'])&& !empty($_POST['description'])&& !empty($_POST['gallery'])){
 
 $titre = $_POST['titre'];
 $description = $_POST['description'];
@@ -23,4 +24,4 @@ $conn = null;
 
 
 
-// ?>
+?>
