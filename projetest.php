@@ -8,11 +8,22 @@ $sql = "SELECT titre, description, gallery FROM projet ";
     foreach ($conn -> query($sql) as $row) {
 }
 
- ?>
+try {
+
+$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery  WHERE id_projet=9");
+$stmt->bindParam(':titre',$_POST['titreedit']);
+$stmt->bindParam(':desription',$_POST['descredit']);
+$stmt->bindParam(':gallery',$_POST['galleryedit']);
+$stmt->execute();
+} catch(PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+?>
+
 <div class="bodyblack text-light pt-4">
   <div class="container">
 
-    <form action ="testupdate.php"  method="post">
+    <form name="formedit"action =""  method="post">
     <textarea name="titreedit" id="titreedit" contenteditable="true" class="text-center"><?php echo $row['titre'] ?></textarea>
 
 
@@ -26,6 +37,7 @@ $sql = "SELECT titre, description, gallery FROM projet ";
 
   </div>
 </div>
+
 <script src="main.js"></script>
 
 <?php
