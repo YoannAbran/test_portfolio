@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
@@ -11,14 +11,13 @@
   <script src="https://kit.fontawesome.com/3bd5358b64.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body >
+<body > -->
 <?php
+include "header.php";
   include "headwhite.php";
 ?>
 
-
-
-<form action="test.php" method="post">
+<form action ="testcreate.php"  method="post">
 
   <h1>Titre</h1>
       <textarea name="titre" id="titre">
@@ -29,23 +28,23 @@
           <textarea name="description" id="description">
                 &lt;p&gt;This is some sample content.&lt;/p&gt;
             </textarea>
-            <p><input type="submit" value="Submit"></p>
+
+      <h1>gallery</h1>
+          <textarea name="gallery" id="gallery">
+
+            </textarea>
+<input type="submit" value="Submit">
           </form>
 
 
       <script>
-       ClassicEditor
-           .create( document.querySelector( '#titre' ) )
-           .catch( error => {
-               console.error( error );
-           } );
+       CKEDITOR.replace( 'titre' );
    </script>
       <script>
-          ClassicEditor
-              .create( document.querySelector( '#description' ) )
-              .catch( error => {
-                  console.error( error );
-              } );
+        CKEDITOR.replace( 'description' );
+</script>
+      <script>
+        CKEDITOR.replace( 'gallery' );
 </script>
 
 <?php
