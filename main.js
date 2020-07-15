@@ -1,5 +1,6 @@
 
             // Turn off automatic editor creation first.
+            
             CKEDITOR.disableAutoInline = true;
             CKEDITOR.inline( 'titreedit' );
             CKEDITOR.instances.titreedit.updateElement();

@@ -4,9 +4,7 @@
   include "config.php";
 ?>
 <?php
-$sql = "SELECT titre, description, gallery FROM projet ";
-    foreach ($conn -> query($sql) as $row) {
-}
+
 
 try {
 
@@ -18,17 +16,19 @@ $stmt->execute();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
+$sql = "SELECT titre, description, gallery FROM projet ";
+    foreach ($conn -> query($sql) as $row) {
+}
+
 ?>
 
 <div class="bodyblack text-light pt-4">
   <div class="container">
 
-    <form name="formedit"action =""  method="post">
+    <form name="formedit" action =""  method="post" id="formedit">
     <textarea name="titreedit" id="titreedit" contenteditable="true" class="text-center"><?php echo $row['titre'] ?></textarea>
 
-
     <textarea name="descredit" id="descredit" contenteditable="true" ><?php echo $row['description'] ?></textarea>
-
 
     <textarea name="galleryedit" id="galleryedit" contenteditable="true" ><?php echo $row['gallery'] ?></textarea>
 

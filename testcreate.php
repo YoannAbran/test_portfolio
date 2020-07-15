@@ -2,7 +2,6 @@
 include 'config.php';
 
 //creation nouvel article/projet
-
 if(!empty($_POST['titre'])&& !empty($_POST['description'])&& !empty($_POST['gallery'])){
 
 $titre = $_POST['titre'];
