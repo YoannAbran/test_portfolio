@@ -4,11 +4,10 @@
   include "config.php";
 ?>
 <?php
-
+$id = $_GET['id'];
 
 try {
-
-$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery  WHERE id_projet=9");
+$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery WHERE id_projet= $id ");
 $stmt->bindParam(':titre',$_POST['titreedit']);
 $stmt->bindParam(':desription',$_POST['descredit']);
 $stmt->bindParam(':gallery',$_POST['galleryedit']);
@@ -16,7 +15,8 @@ $stmt->execute();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-$sql = "SELECT titre, description, gallery FROM projet ";
+
+$sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
     foreach ($conn -> query($sql) as $row) {
 }
 

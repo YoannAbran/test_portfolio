@@ -1,3 +1,8 @@
+<?php
+      include "config.php";
+      $sql = "SELECT id_projet, titre, description, gallery FROM projet ";
+      foreach ($conn -> query($sql) as $row) {} ?>
+
 <header id="headwhite" class="d-flex justify-content-between">
 <div class=" container d-flex justify-content-between">
 
@@ -19,11 +24,11 @@
        Projets
        </a>
        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
-         <a class="dropdown-item" href="projetest.php">Acceuil Projets</a>
-         <a class="dropdown-item" href="int-barmy.php">Intégration Barmy</a>
-         <a class="dropdown-item" href="int-bislite.php">Intégration Bislite</a>
-         <a class="dropdown-item" href="explofichier.php">Explorateur de fichier</a>
-         <a class="dropdown-item" href="pokebomb.php">Pokébomb</a>
+
+           <?php  foreach ($conn -> query($sql) as $row) {
+         echo "<a class='dropdown-item' href='projetest.php?id=".$row['id_projet']."'>".$row['titre']."</a>";
+            } ?>
+
        </div>
      </li>
      <li class="nav-item">

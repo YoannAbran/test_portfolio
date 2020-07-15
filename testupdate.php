@@ -7,7 +7,7 @@ require_once 'config.php';
 
 try {
 
-$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery  WHERE id_projet=9");
+$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery  WHERE id_projet= $_GET['id']");
 $stmt->bindParam(':titre',$_POST['titreedit']);
 $stmt->bindParam(':desription',$_POST['descredit']);
 $stmt->bindParam(':gallery',$_POST['galleryedit']);

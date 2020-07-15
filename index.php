@@ -2,26 +2,34 @@
 <?php
   include "header.php";
   include "headwhite.php";
+
+  require_once('../include/config.php');
+    if ($_SESSION['isAdmin']) {
+        echo "Welcome " . $_SESSION['authUser'];
+    }else {
+        echo "Get out you're not authorized";
+    }
 ?>
 
 <form action ="testcreate.php"  method="post">
 
   <h1>Titre</h1>
       <textarea name="titre" id="titre">
-            &lt;p&gt;This is some sample content.&lt;/p&gt;
-        </textarea>
+        Titre
+      </textarea>
 
       <h1>description</h1>
           <textarea name="description" id="description">
-                &lt;p&gt;This is some sample content.&lt;/p&gt;
-            </textarea>
+            Description
+          </textarea>
 
       <h1>gallery</h1>
           <textarea name="gallery" id="gallery">
+            Image
+          </textarea>
 
-            </textarea>
-<input type="submit" value="Submit">
-          </form>
+            <input type="submit" value="Submit">
+</form>
 
 
       <script>
