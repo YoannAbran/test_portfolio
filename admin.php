@@ -8,5 +8,6 @@ session_start();
   else {
       echo "Get out you're not authorized";
       header('Location: login.php');
+      exit;
   }
   ?>

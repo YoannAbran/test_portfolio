@@ -21,6 +21,9 @@
         <a class="nav-link text-dark" href="about.php">À propos de moi</a>
      </li>
      <li class="nav-item">
+        <a class="nav-link text-dark" href="contact.php">contact</a>
+     </li>
+     <li class="nav-item">
         <a class="nav-link text-dark" href="deco.php">déconnexion</a>
      </li>
 

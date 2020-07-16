@@ -10,3 +10,4 @@ setcookie('login', '');
 setcookie('pass_hache', '');
 
 header('Location: login.php');
+exit;

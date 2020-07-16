@@ -20,6 +20,7 @@ if (isset($_POST["user"]) && isset($_POST["password"])) {
         $_SESSION['authUser'] = $user;
         $_SESSION['id'] = $result[1];
         header('Location: connexion.php');
+        exit;
     }
 }
 ?>
