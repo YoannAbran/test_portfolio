@@ -1,10 +1,13 @@
 <?php
   include "header.php" ;
   include "headwhite.php";
-  include "config.php";
+  // include "config.php";
+  include "admin.php";
 ?>
 <?php
 $id = $_GET['id'];
+
+if (isset($_POST['titreedit'])&& isset($_POST['descredit']) && isset($_POST['galleryedit'])) {
 
 try {
 $stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery WHERE id_projet= $id ");
@@ -15,7 +18,7 @@ $stmt->execute();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-
+}
 $sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
     foreach ($conn -> query($sql) as $row) {
 }

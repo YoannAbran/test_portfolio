@@ -1,7 +1,10 @@
 <?php
 include "header.php";
 include "headwhite.php";
-include "config.php";
+// include "config.php";
+include "admin.php";
+
+if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
 
 try {
 $stmt = $conn->prepare("UPDATE about SET photo = :photo, description = :desription, coordonnee = :coordonnee");
@@ -12,7 +15,7 @@ $stmt->execute();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-
+}
 $sql = "SELECT photo, description, coordonnee FROM about ";
     foreach ($conn -> query($sql) as $row) {
 }

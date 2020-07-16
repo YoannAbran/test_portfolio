@@ -1,7 +1,3 @@
-<?php
-      include "config.php";
-      $sql = "SELECT id_projet, titre, description, gallery FROM projet ";
-      foreach ($conn -> query($sql) as $row) {} ?>
 
 <header id="headwhite" class="d-flex justify-content-between">
 <div class=" container d-flex justify-content-between">
@@ -17,25 +13,17 @@
  <div class="collapse navbar-collapse" id="navbarNavDropdown">
    <ul class="navbar-nav">
      <li class="nav-item active">
-       <a class="nav-link" href="index.php">Acceuil <span class="sr-only">(current)</span></a>
+       <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>
      </li>
-     <li class="nav-item dropdown">
-       <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       Projets
-       </a>
-       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
-
-           <?php  foreach ($conn -> query($sql) as $row) {
-         echo "<a class='dropdown-item' href='projetest.php?id=".$row['id_projet']."'>".$row['titre']."</a>";
-            } ?>
-
-       </div>
-     </li>
+     <li class="nav-item">
+        <a class="nav-link text-dark" href="create.php">Création</a>
      <li class="nav-item">
         <a class="nav-link text-dark" href="about.php">À propos de moi</a>
      </li>
      <li class="nav-item">
-       <a class="nav-link text-dark" href="#">Article</a>
+        <a class="nav-link text-dark" href="deco.php">déconnexion</a>
+     </li>
+
 
      </li>
    </ul>

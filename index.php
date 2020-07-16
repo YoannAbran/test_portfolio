@@ -2,42 +2,29 @@
 <?php
   include "header.php";
   include "headwhite.php";
+  // require_once('config.php');
+  include "admin.php";
 
-  require_once('../include/config.php');
-    if ($_SESSION['isAdmin']) {
-        echo "Welcome " . $_SESSION['authUser'];
-    }else {
-        echo "Get out you're not authorized";
-    }
-?>
+    $sql = "SELECT id_projet, titre, description, gallery FROM projet ";
+    foreach ($conn -> query($sql) as $row) {}
+  ?>
 
-<form action ="testcreate.php"  method="post">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <h1>Titre</h1>
-      <textarea name="titre" id="titre">
-        Titre
-      </textarea>
+        <?php  foreach ($conn -> query($sql) as $row) {
+        echo "<tr><td><a href='projetest.php?id=".$row['id_projet']."'>".$row['titre']."</a></td>";
+        echo "<td>".$row['description']."</td> </tr>";
+          } ?>
 
-      <h1>description</h1>
-          <textarea name="description" id="description">
-            Description
-          </textarea>
-
-      <h1>gallery</h1>
-          <textarea name="gallery" id="gallery">
-            Image
-          </textarea>
-
-            <input type="submit" value="Submit">
-</form>
-
-
-      <script>
-        CKEDITOR.replace( 'titre' );
-        CKEDITOR.replace( 'description' );
-        CKEDITOR.replace( 'gallery' );
-      </script>
-
+ </tbody>
+</table>
 <?php
   include "footerwhite.php";
   include "footer.php";
