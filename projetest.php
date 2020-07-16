@@ -1,7 +1,6 @@
 <?php
   include "header.php" ;
   include "headwhite.php";
-  // include "config.php";
   include "admin.php";
 ?>
 <?php
@@ -26,7 +25,7 @@ $sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
 ?>
 
 <div class="bodyblack text-light pt-4">
-  <div class="container">
+  <div class="container d-flex justify-content-center">
 
     <form name="formedit" action =""  method="post" id="formedit">
     <textarea name="titreedit" id="titreedit" contenteditable="true" class="text-center"><?php echo $row['titre'] ?></textarea>

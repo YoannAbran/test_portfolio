@@ -1,7 +1,6 @@
 <?php
 include "header.php";
 include "headwhite.php";
-// include "config.php";
 include "admin.php";
 
 if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
