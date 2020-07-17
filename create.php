@@ -31,6 +31,7 @@
         CKEDITOR.replace( 'titre' );
         CKEDITOR.replace( 'description' );
         CKEDITOR.replace( 'gallery' );
+        CKEDITOR.config.autoParagraph = false;
       </script>
 
 <?php

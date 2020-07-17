@@ -4,12 +4,18 @@ include "headwhite.php";
 include "admin.php";
 
 if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
+  $coordedit = htmlspecialchars($_POST['coordedit']);
+  $descriptionedit = htmlspecialchars($_POST['descriptionedit']);
 
+  $photoedit = $_POST['photoedit'];
+  $pattern = '$src="([^"]+)$';
+  preg_match($pattern,$photoedit,$matches);
+  $photoedit = $matches[1];
 try {
 $stmt = $conn->prepare("UPDATE about SET photo = :photo, description = :desription, coordonnee = :coordonnee");
-$stmt->bindParam(':photo',$_POST['photoedit']);
-$stmt->bindParam(':desription',$_POST['descriptionedit']);
-$stmt->bindParam(':coordonnee',$_POST['coordedit']);
+$stmt->bindParam(':photo',$photoedit);
+$stmt->bindParam(':desription',$descriptionedit);
+$stmt->bindParam(':coordonnee',$coordedit);
 $stmt->execute();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
@@ -20,19 +26,19 @@ $sql = "SELECT photo, description, coordonnee FROM about ";
 }
 ?>
 <div class="bodyblack justify-content-center text-light">
-  <div class="d-flex justify-content-center">
-    <div id="bgabout"class="container d-flex row">
+  <div class="d-flex justify-content-center ">
+    <div class=" container d-flex row bgabout">
       <div class="container d-flex flex-column align-items-center p-4 col-lg-6 col-xs">
 
-<form id="aboutedit" action="" method="post">
+<form id="aboutedit" class="text-center text-dark" action="" method="post">
 
-  <textarea class="" name="photoedit" contenteditable="true"><?php echo $row['photo'] ?></textarea>
+  <textarea class="" name="photoedit" contenteditable="true"><?php echo"<img  src='".htmlspecialchars_decode($row['photo'])."'>" ?></textarea>
 
-  <textarea class="" name="descriptionedit" contenteditable="true"><?php echo $row['description'] ?></textarea>
+  <textarea class="" name="descriptionedit" contenteditable="true"><?php echo htmlspecialchars_decode($row['description']) ?></textarea>
 
-  <textarea name="coordedit" class = "" contenteditable="true"><?php echo $row['coordonnee'] ?></textarea>
+  <textarea name="coordedit" class = "" contenteditable="true"><?php echo htmlspecialchars_decode($row['coordonnee']) ?></textarea>
 
-  <input type="submit" value="Submit" >
+  <input class="btn" type="submit" value="Submit" >
 </form>
 
       </div>
@@ -40,13 +46,15 @@ $sql = "SELECT photo, description, coordonnee FROM about ";
   </div>
 </div>
   <script>
+  
   CKEDITOR.disableAutoInline = true;
-  CKEDITOR.inline( 'photoedit' );
+  CKEDITOR.inline( 'photoedit');
   CKEDITOR.instances.photoedit.updateElement();
-  CKEDITOR.inline( 'descriptionedit' );
+  CKEDITOR.inline( 'descriptionedit');
   CKEDITOR.instances.descriptionedit.updateElement();
-  CKEDITOR.inline( 'coordedit' );
+  CKEDITOR.inline( 'coordedit');
   CKEDITOR.instances.coordedit.updateElement();
+    CKEDITOR.config.disallowedContent = 'p';
 </script>
 
 

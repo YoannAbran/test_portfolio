@@ -6,9 +6,12 @@ include 'config.php';
 //creation nouvel article/projet
 if(!empty($_POST['titre'])&& !empty($_POST['description'])&& !empty($_POST['gallery'])){
 
-$titre = $_POST['titre'];
-$description = $_POST['description'];
+$titre = htmlspecialchars($_POST['titre']);
+$description = htmlspecialchars($_POST['description']);
 $gallery = $_POST['gallery'];
+$pattern = '$src="([^"]+)$';
+preg_match($pattern,$gallery,$matches);
+$gallery = $matches[1];
 
 try{
   if(isset($_POST['titre'])){
@@ -31,5 +34,9 @@ catch(PDOException $e) {
 $conn = null;
 
 }
-
-?>
+// function getsrc(){
+// $pattern = '$src="([^"]+)$';
+// preg_match($pattern,$gallery,$matches);
+// return $matches[1];
+// }
+//   }
