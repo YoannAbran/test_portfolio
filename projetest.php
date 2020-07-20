@@ -7,13 +7,20 @@
 $id = $_GET['id'];
 
 if (isset($_POST['titreedit'])&& isset($_POST['descredit']) && isset($_POST['galleryedit'])) {
-$titredit = htmlspecialchars($_POST['titreedit']);
-$descredit = htmlspecialchars($_POST['descredit']);
+
+$patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
+
+$titredit = $_POST['titreedit'];
+preg_match($patternp,$titredit,$matchestitre);
+$titredit = $matchestitre[1];
+
+$descredit = $_POST['descredit'];
+preg_match($patternp,$descredit,$matchesdes);
+$descredit = $matchesdes[1];
 
 $galleryedit = $_POST['galleryedit'];
-$pattern = '$src="([^"]+)$';
-preg_match($pattern,$galleryedit,$matches);
-$galleryedit = $matches[1];
+preg_match($patternp,$galleryedit,$matchesgal);
+$galleryedit = $matchesgal[1];
 
 try {
 $stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery WHERE id_projet= $id ");
@@ -38,11 +45,11 @@ $sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
   <div class="container d-flex justify-content-center">
     <div class=" container d-flex justify-content-center bgabout">
     <form name="formedit" action ="" class="p-5 text-center text-dark" method="post" id="formedit">
-    <textarea name="titreedit" id="titreedit" contenteditable="true" ><?php echo htmlspecialchars_decode($row['titre']) ?></textarea>
+    <textarea name="titreedit" id="titreedit" contenteditable="true" ><?php echo htmlspecialchars($row['titre']) ?></textarea>
 
-    <textarea name="descredit" id="descredit" contenteditable="true" ><?php echo  htmlspecialchars_decode($row['description']) ?></textarea>
+    <textarea name="descredit" id="descredit" contenteditable="true" ><?php echo  htmlspecialchars($row['description']) ?></textarea>
 
-    <textarea name="galleryedit" id="galleryedit" contenteditable="true" ><?php echo"<img  src='".htmlspecialchars_decode($row['gallery'])."'>" ?></textarea>
+    <textarea name="galleryedit" id="galleryedit" contenteditable="true" ><?php echo htmlspecialchars($row['gallery'])?></textarea>
 
       <input class="btn" type="submit" value="Submit">
       </form>
@@ -51,7 +58,17 @@ $sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
   </div>
 </div>
 
-<script src="main.js"></script>
+<script>
+CKEDITOR.config.disallowedContent = 'p';
+CKEDITOR.disableAutoInline = true;
+CKEDITOR.inline( 'titreedit' );
+// CKEDITOR.instances.titreedit.updateElement();
+CKEDITOR.inline( 'descredit' );
+// CKEDITOR.instances.descredit.updateElement();
+CKEDITOR.inline( 'galleryedit' );
+// CKEDITOR.instances.galleryedit.updateElement();
+
+</script>
 
 <?php
   include "footerwhite.php";

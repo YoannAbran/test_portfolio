@@ -8,4 +8,4 @@
             CKEDITOR.instances.descredit.updateElement();
             CKEDITOR.inline( 'galleryedit' );
             CKEDITOR.instances.galleryedit.updateElement();
-            CKEDITOR.config.disallowedContent = 'p';
+            CKEDITOR.config.autoParagraph = false;

@@ -4,13 +4,24 @@ include "headwhite.php";
 include "admin.php";
 
 if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
-  $coordedit = htmlspecialchars($_POST['coordedit']);
-  $descriptionedit = htmlspecialchars($_POST['descriptionedit']);
+$patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
+
+  $coordedit = $_POST['coordedit'];
+  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$coordedit, $m, PREG_SET_ORDER);
+  foreach ($variable as $key => $value) {
+    // code...
+  }
+  $coordedit = $m;
+
+  $descriptionedit = $_POST['descriptionedit'];
+
+  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$descriptionedit);
+  // $descriptionedit = $matchesdesc[1];
 
   $photoedit = $_POST['photoedit'];
-  $pattern = '$src="([^"]+)$';
-  preg_match($pattern,$photoedit,$matches);
-  $photoedit = $matches[1];
+  // $patternimg = '$src="([^"]+)$';
+  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$photoedit);
+
 try {
 $stmt = $conn->prepare("UPDATE about SET photo = :photo, description = :desription, coordonnee = :coordonnee");
 $stmt->bindParam(':photo',$photoedit);
@@ -32,11 +43,11 @@ $sql = "SELECT photo, description, coordonnee FROM about ";
 
 <form id="aboutedit" class="text-center text-dark" action="" method="post">
 
-  <textarea class="" name="photoedit" contenteditable="true"><?php echo"<img  src='".htmlspecialchars_decode($row['photo'])."'>" ?></textarea>
+  <textarea class="" name="photoedit" contenteditable="true"><?php echo htmlspecialchars($row['photo']) ?></textarea>
 
-  <textarea class="" name="descriptionedit" contenteditable="true"><?php echo htmlspecialchars_decode($row['description']) ?></textarea>
+  <textarea class="" name="descriptionedit" contenteditable="true"><?php echo htmlspecialchars($row['description']) ?></textarea>
 
-  <textarea name="coordedit" class = "" contenteditable="true"><?php echo htmlspecialchars_decode($row['coordonnee']) ?></textarea>
+  <textarea name="coordedit" class = "" contenteditable="true"><?php echo htmlspecialchars($row['coordonnee']) ?></textarea>
 
   <input class="btn" type="submit" value="Submit" >
 </form>
@@ -46,7 +57,7 @@ $sql = "SELECT photo, description, coordonnee FROM about ";
   </div>
 </div>
   <script>
-  
+
   CKEDITOR.disableAutoInline = true;
   CKEDITOR.inline( 'photoedit');
   CKEDITOR.instances.photoedit.updateElement();

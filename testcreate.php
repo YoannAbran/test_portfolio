@@ -6,18 +6,18 @@ include 'config.php';
 //creation nouvel article/projet
 if(!empty($_POST['titre'])&& !empty($_POST['description'])&& !empty($_POST['gallery'])){
 
-$titre = htmlspecialchars($_POST['titre']);
-$description = htmlspecialchars($_POST['description']);
+$titre = $_POST['titre'];
+$description = $_POST['description'];
 $gallery = $_POST['gallery'];
-$pattern = '$src="([^"]+)$';
-preg_match($pattern,$gallery,$matches);
-$gallery = $matches[1];
+// $pattern = '$src="([^"]+)$';
+// preg_match($pattern,$gallery,$matches);
+// $gallery = $matches[1];
 
 try{
   if(isset($_POST['titre'])){
-  $sql = "INSERT INTO projet (titre,description,gallery) VALUES ('$titre','$description','$gallery')";
-  // use exec() because no results are returned
-  $conn->exec($sql);
+  $sql = $conn->prepare( "INSERT INTO projet (titre,description,gallery) VALUES ('$titre','$description','$gallery')");
+
+  $sql->execute();
   echo "
             <script>
                 alert('Record updated successfully!');
