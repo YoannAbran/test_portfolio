@@ -16,7 +16,6 @@ $gallery = $_POST['gallery'];
 try{
   if(isset($_POST['titre'])){
   $sql = $conn->prepare( "INSERT INTO projet (titre,description,gallery) VALUES ('$titre','$description','$gallery')");
-
   $sql->execute();
   echo "
             <script>

@@ -8,19 +8,19 @@ $id = $_GET['id'];
 
 if (isset($_POST['titreedit'])&& isset($_POST['descredit']) && isset($_POST['galleryedit'])) {
 
-$patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
+// $patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
 
 $titredit = $_POST['titreedit'];
-preg_match($patternp,$titredit,$matchestitre);
-$titredit = $matchestitre[1];
+// preg_match($patternp,$titredit,$matchestitre);
+// $titredit = $matchestitre[1];
 
 $descredit = $_POST['descredit'];
-preg_match($patternp,$descredit,$matchesdes);
-$descredit = $matchesdes[1];
+// preg_match($patternp,$descredit,$matchesdes);
+// $descredit = $matchesdes[1];
 
 $galleryedit = $_POST['galleryedit'];
-preg_match($patternp,$galleryedit,$matchesgal);
-$galleryedit = $matchesgal[1];
+// preg_match($patternp,$galleryedit,$matchesgal);
+// $galleryedit = $matchesgal[1];
 
 try {
 $stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription, gallery = :gallery WHERE id_projet= $id ");
@@ -32,9 +32,9 @@ $stmt->execute();
   echo "Connection failed: " . $e->getMessage();
 }
 }
-$sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
-    foreach ($conn -> query($sql) as $row) {
-}
+$sql = $conn->prepare("SELECT titre, description, gallery FROM projet WHERE id_projet= $id ");
+$sql->execute();
+$row = $sql->fetch();
 
 ?>
 
@@ -53,7 +53,9 @@ $sql = "SELECT titre, description, gallery FROM projet WHERE id_projet= $id ";
 
       <input class="btn" type="submit" value="Submit">
       </form>
-
+<div class="">
+  <?php echo  $row['description'] ?>
+</div>
   </div>
   </div>
 </div>

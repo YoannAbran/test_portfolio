@@ -4,23 +4,19 @@ include "headwhite.php";
 include "admin.php";
 
 if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
-$patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
+// $patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
 
   $coordedit = $_POST['coordedit'];
-  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$coordedit, $m, PREG_SET_ORDER);
-  foreach ($variable as $key => $value) {
-    // code...
-  }
-  $coordedit = $m;
+  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$coordedit, $matches,PREG_PATTERN_ORDER);
 
   $descriptionedit = $_POST['descriptionedit'];
 
-  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$descriptionedit);
+  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$descriptionedit,$m);
   // $descriptionedit = $matchesdesc[1];
 
   $photoedit = $_POST['photoedit'];
   // $patternimg = '$src="([^"]+)$';
-  preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$photoedit);
+  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$photoedit);
 
 try {
 $stmt = $conn->prepare("UPDATE about SET photo = :photo, description = :desription, coordonnee = :coordonnee");
@@ -32,9 +28,9 @@ $stmt->execute();
   echo "Connection failed: " . $e->getMessage();
 }
 }
-$sql = "SELECT photo, description, coordonnee FROM about ";
-    foreach ($conn -> query($sql) as $row) {
-}
+$sql = $conn->prepare("SELECT photo, description, coordonnee FROM about ");
+$sql->execute();
+$row = $sql->fetch();
 ?>
 <div class="bodyblack justify-content-center text-light">
   <div class="d-flex justify-content-center ">
@@ -51,6 +47,10 @@ $sql = "SELECT photo, description, coordonnee FROM about ";
 
   <input class="btn" type="submit" value="Submit" >
 </form>
+
+<div class="">
+  <?php echo $row['coordonnee'] ?>
+</div>
 
       </div>
     </div>
