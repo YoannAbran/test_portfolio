@@ -2,8 +2,7 @@
   include "header.php" ;
   include "headwhite.php";
   include "admin.php";
-?>
-<?php
+
 $id = $_GET['id'];
 
 if (isset($_POST['titreedit'])&& isset($_POST['descredit']) && isset($_POST['galleryedit'])) {

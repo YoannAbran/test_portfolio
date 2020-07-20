@@ -24,12 +24,15 @@ body{
 .dropdown-menu{
   border: none;
   background: transparent;
-  margin: 0;
-  padding: 0;
   width: 50%;
+
 }
 .dropdown-item{
   background: none;
+  margin: 0px;
+  padding: 0px;
+}
+.dropdown-item p {
   margin: 0;
   padding: 0;
 
@@ -125,6 +128,7 @@ border-radius: 25px;
 #logoa{
   color: #D4AF37;
 }
+
 .gold{
   color: #D4AF37;
 }
