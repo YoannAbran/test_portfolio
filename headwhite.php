@@ -29,7 +29,7 @@ $row = $sql->fetch()
           </a>
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
 
-            <a class="dropdown-item" href="projets.php">Accueil Projets</a>
+            <a class="dropdown-item" href="projet.php">Accueil Projets</a>
             <?php foreach ($sql as $row){
               echo "<a class='dropdown-item' href='projetest.php?id=".$row['id_projet']."'>".$row['titre']."</a>";
             } ?>
