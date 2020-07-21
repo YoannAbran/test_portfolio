@@ -2,9 +2,9 @@
 <?php
   include "header.php";
   include "headwhite.php";
-  // include "admin.php";
 
-    $sql = $conn->prepare("SELECT id_projet, titre, description, image FROM projet ");
+
+    $sql = $conn->prepare("SELECT id_projet, titre, description FROM projet ");
     $sql->execute();
     $row = $sql->fetch();
 

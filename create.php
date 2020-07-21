@@ -1,10 +1,10 @@
 <?php
   include "header.php";
   include "headwhite.php";
-  // include "admin.php";
+
 ?>
 <div class="bodyblack text-center">
-  <!-- <form id='create' action ="testcreate.php"  method="post"> -->
+
 <form  class="text-light" method='post' action='testcreate.php' enctype='multipart/form-data'>
     <h1 class="gold p-4">Titre</h1>
         <input type="text" name="titre" value="titre">
@@ -20,14 +20,6 @@
 </form>
 </div>
 
-
-
-      <script>
-        // CKEDITOR.replace( 'titre');
-        // CKEDITOR.replace( 'description');
-        // CKEDITOR.replace( 'gallery');
-        // CKEDITOR.config.autoParagraph = false;
-      </script>
 
 <?php
   include "footerwhite.php";

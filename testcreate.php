@@ -4,13 +4,21 @@ include 'config.php';
 
 if(isset($_POST['submit'])){
 
+  extract($_POST);
+
+
+    $sql = $conn->prepare( "INSERT INTO projet (titre,description) VALUES (:titre,:description)");
+    $sql->execute(array(
+                ':titre' => $titre,
+                ':description' => $description,
+              ));
+
+  $last_id = $conn->lastInsertId();
 
   $countfiles = count($_FILES['files']['name']);
-
    // Prepared statement
-   $query = "INSERT INTO images (name,image) VALUES(?,?)
-              INNER JOIN projetest
-              ON id_projet = id_projet";
+   $query = "INSERT INTO images (name,image,idprojet) VALUES(?,?,?)";
+
 
    $statement = $conn->prepare($query);
 
@@ -28,7 +36,7 @@ if(isset($_POST['submit'])){
      $file_extension = strtolower($file_extension);
 
      // Valid image extension
-     $valid_extension = array("png","jpeg","jpg");
+     $valid_extension = array("png","jpeg","jpg","PNG");
 
      if(in_array($file_extension, $valid_extension)){
 
@@ -36,7 +44,7 @@ if(isset($_POST['submit'])){
         if(move_uploaded_file($_FILES['files']['tmp_name'][$i],$target_file)){
 
            // Execute query
- 	  $statement->execute(array($filename,$target_file));
+ 	  $statement->execute(array($filename,$target_file,$last_id));
 
         }
      }
@@ -45,35 +53,5 @@ if(isset($_POST['submit'])){
    echo "File upload successfully";
  }
 
-
-extract($_POST);
-try{
-
-  $sql = $conn->prepare( "INSERT INTO projet (titre,description) VALUES (:titre,:description)");
-  $sql->execute(array(
-              ':titre' => $titre,
-              ':description' => $description,
-            ));
-  echo "
-            <script>
-                alert('Record updated successfully!');
-            </script>";
-
-        $last_id = $conn->lastInsertId();
-header("Location: projetest.php?id=".$last_id );
-exit;
-
-}
-catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-
-
-// }
-
-// function getsrc(){
-// $pattern = '$src="([^"]+)$';
-// preg_match($pattern,$gallery,$matches);
-// return $matches[1];
-// }
-//   }
+ header("Location: projetest.php?id=".$last_id );
+ exit;
