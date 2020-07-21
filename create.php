@@ -13,6 +13,8 @@
             <textarea name="description" id="description">
               Description
             </textarea>
+
+
 <h1 class="gold p-4">gallery</h1>
 <input type='file' name='files[]' multiple />
 <button  class="m-4" type="submit" value="Submit" name="submit">Submit</button>

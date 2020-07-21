@@ -30,7 +30,8 @@
  </tbody>
 </table>
 
-<script>function submitResult() {
+<script>
+function submitResult() {
    if ( confirm("Etes vous sur de vouloir effacer ce fichier?") == false ) {
       return false ;
    } else {
