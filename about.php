@@ -1,26 +1,29 @@
 <?php
 include "header.php";
 include "headwhite.php";
-include "admin.php";
 
-if (isset($_POST['photoedit'])&& isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
-// $patternp = '$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$';
 
-  $coordedit = $_POST['coordedit'];
-  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$coordedit, $matches,PREG_PATTERN_ORDER);
+if (isset($_POST['descriptionedit']) && isset($_POST['coordedit'])) {
 
-  $descriptionedit = $_POST['descriptionedit'];
+extract($_POST);
 
-  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$descriptionedit,$m);
-  // $descriptionedit = $matchesdesc[1];
+  $filename = $_FILES['photo']['name'];
+  // Location
+  $target_file = 'img/'.$filename;
+  // file extension
+  $file_extension = pathinfo($target_file, PATHINFO_EXTENSION);
+  $file_extension = strtolower($file_extension);
+  // Valid image extension
+  $valid_extension = array("png","jpeg","jpg","PNG");
+  if(in_array($file_extension, $valid_extension)){
 
-  $photoedit = $_POST['photoedit'];
-  // $patternimg = '$src="([^"]+)$';
-  // preg_match_all('$<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>$',$photoedit);
-
+     // Upload file
+     if(move_uploaded_file($_FILES['photo']['tmp_name'],$target_file)){
+     }
+  }
 try {
 $stmt = $conn->prepare("UPDATE about SET photo = :photo, description = :desription, coordonnee = :coordonnee");
-$stmt->bindParam(':photo',$photoedit);
+$stmt->bindParam(':photo',$target_file);
 $stmt->bindParam(':desription',$descriptionedit);
 $stmt->bindParam(':coordonnee',$coordedit);
 $stmt->execute();
@@ -37,13 +40,15 @@ $row = $sql->fetch();
     <div class=" container d-flex row bgabout">
       <div class="container d-flex flex-column align-items-center p-4 col-lg-6 col-xs">
 
-<form id="aboutedit" class="text-center text-dark" action="" method="post">
 
-  <textarea class="" name="photoedit" contenteditable="true"><?php echo htmlspecialchars($row['photo']) ?></textarea>
 
-  <textarea class="" name="descriptionedit" contenteditable="true"><?php echo htmlspecialchars($row['description']) ?></textarea>
+<img src="<?php echo $row['photo'] ?>" alt="">
+  <form id="aboutedit" class="text-center text-dark" action=""  method="post" enctype='multipart/form-data'>
+    <input type='file' name='photo' />
 
-  <textarea name="coordedit" class = "" contenteditable="true"><?php echo htmlspecialchars($row['coordonnee']) ?></textarea>
+  <textarea class="" name="descriptionedit"><?php echo htmlspecialchars($row['description']) ?></textarea>
+
+  <textarea name="coordedit" class = ""><?php echo htmlspecialchars($row['coordonnee']) ?></textarea>
 
   <input class="btn" type="submit" value="Submit" >
 </form>
@@ -56,17 +61,7 @@ $row = $sql->fetch();
     </div>
   </div>
 </div>
-  <script>
 
-  CKEDITOR.disableAutoInline = true;
-  CKEDITOR.inline( 'photoedit');
-  CKEDITOR.instances.photoedit.updateElement();
-  CKEDITOR.inline( 'descriptionedit');
-  CKEDITOR.instances.descriptionedit.updateElement();
-  CKEDITOR.inline( 'coordedit');
-  CKEDITOR.instances.coordedit.updateElement();
-    CKEDITOR.config.disallowedContent = 'p';
-</script>
 
 
 <?php
