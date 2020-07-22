@@ -1,7 +1,5 @@
 <?php
-  include "header.php";
   include "headwhite.php";
-
 ?>
 <div class="bodyblack text-center">
 
@@ -25,5 +23,4 @@
 
 <?php
   include "footerwhite.php";
-  include "footer.php";
  ?>

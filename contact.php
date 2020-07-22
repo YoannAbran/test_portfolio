@@ -1,11 +1,10 @@
 <?php
-  include "header.php" ;
   include "headwhite.php";
-
+  include "form_valid.php";
 ?>
 
 <div class="container d-flex flex-column align-items-center p-4 col-lg-6 col-xs">
-  <form class="form-row" action="form_valid.php" method="POST">
+  <form class="form-row" action="" method="POST">
 
     <div class="p-2">
       <label class="col" for="nom">Nom</label>
@@ -29,5 +28,4 @@
 </div>
 <?php
   include "footerwhite.php";
-  include "footer.php";
   ?>

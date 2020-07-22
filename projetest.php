@@ -1,11 +1,9 @@
 <?php
-  include "header.php" ;
+
   include "headwhite.php";
   include "edit.php";
 
-
 foreach ($row as $rowedit) {
-
 }
 
 ?>
@@ -29,7 +27,7 @@ foreach ($row as $rowedit) {
         </form>
 
       <div class="d-flex row">
-
+<div><?php echo nl2br(htmlspecialchars($rowedit['description']))?></div>
 <?php
 
 foreach ($row as $rowimg) {
@@ -73,5 +71,4 @@ function submitResult() {
 
 <?php
   include "footerwhite.php";
-  include "footer.php";
   ?>

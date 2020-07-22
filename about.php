@@ -1,5 +1,4 @@
 <?php
-include "header.php";
 include "headwhite.php";
 
 
@@ -66,7 +65,4 @@ $row = $sql->fetch();
 
 <?php
 include "footerwhite.php";
-include "footer.php";
-
-
  ?>

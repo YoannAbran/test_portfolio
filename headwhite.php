@@ -1,4 +1,5 @@
 <?php
+include 'header.php';
 include 'admin.php';
 $sql = $conn->prepare("SELECT id_projet, titre FROM projet ");
 $sql->execute();
@@ -36,7 +37,7 @@ $row = $sql->fetch()
           </div>
         </li>
      <li class="nav-item">
-        <a class="nav-link text-dark" href="about.php">moi</a>
+        <a class="nav-link text-dark" href="about.php">Moi</a>
      </li>
      <li class="nav-item">
         <a class="nav-link text-dark" href="contact.php">contact</a>

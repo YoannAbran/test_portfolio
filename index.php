@@ -1,8 +1,5 @@
-
 <?php
-  include "header.php";
   include "headwhite.php";
-
 
     $sql = $conn->prepare("SELECT id_projet, titre, description FROM projet ");
     $sql->execute();
@@ -44,5 +41,4 @@ function submitResult() {
 </script>
 <?php
   include "footerwhite.php";
-  include "footer.php";
  ?>
