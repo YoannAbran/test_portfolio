@@ -11,18 +11,3 @@ header('Location: index.php');
 exit;
 
 }
-
-
-if (isset($_GET['imgdel'])) {
-$idimg = $_GET['imgdel'];
-try {
-  $del = $conn-> prepare("DELETE FROM images WHERE id_image = $idimg");
-  $del->execute();
-  echo "Record deleted successfully";
-  header('Location: projetest.php');
-  exit;
-}
-  catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-}

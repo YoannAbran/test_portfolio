@@ -1,58 +1,30 @@
 <?php
   include "header.php" ;
   include "headwhite.php";
+  include "edit.php";
 
 
-
-
-$id = $_GET['id'];
-
-if (isset($_POST['submit'])) {
-extract($_POST);
-
-try {
-$stmt = $conn->prepare("UPDATE projet SET titre = :titre, description = :desription WHERE id_projet= $id ");
-$stmt->bindParam(':titre',$titredit);
-$stmt->bindParam(':desription',$descredit);
-
-$stmt->execute();
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-}
-try {
-$sql = $conn->prepare("SELECT titre, description FROM projet WHERE id_projet= $id ");
-$sql->execute();
-$row = $sql->fetch();
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
-try {
-$sqlimg = $conn->prepare("SELECT id_image,image,idprojet FROM images WHERE idprojet= $id ");
-$sqlimg->execute();
-// $rowimg = $sqlimg->fetch();
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
 
 
 ?>
 
 <div class="bodyblack text-light pt-4">
 
-
-
   <div class="container d-flex justify-content-center">
 
   <div class=" container d-flex flex-column align-items-center bgabout">
 
-    <form name="formedit" action ="" class="p-5 text-center text-dark" method="post" id="formedit">
-      <div class="">
-        <input type="text" name="titreedit" value="<?php echo htmlspecialchars($row['titre']) ?>">
+    <form  action ="" class="p-5 text-center text-dark" method="post" id="formedit">
+      <div class="p-2">
+        <input type="text" name="titreedit" value="<?php echo htmlspecialchars($row['titre']) ?>" size="50">
       </div>
-      <div class="">
-        <textarea name="descredit" id="descredit" ><?php echo  htmlspecialchars($row['description']) ?></textarea>
+      <div class="p-2">
+        <textarea name="descredit" id="descredit" rows="8" cols="100" ><?php echo  htmlspecialchars($row['description']) ?></textarea>
       </div>
+      <div class="p-2">
+        <input class="btn" type="submit" value="Submit">
+      </div>
+        </form>
 
       <div class="d-flex row">
 
@@ -62,7 +34,7 @@ foreach ($sqlimg as $rowimg) {
 
   echo"<div class='form-check d-flex flex-column align-items-center col-3'>
   <img class='py-3 col' src='".$rowimg['image']."' alt=''>
-  <form action ='delete.php?imgdel=".$rowimg['id_image']."' method='post' onsubmit='return submitResult();'><input type='submit' value='Supprimer'></form>
+  <form action ='editdelete.php?imgdel=".$rowimg['id_image']."&id=".$id."' method='post' name='delimg' onsubmit='return submitResult();'><input type='submit' value='Supprimer' name='delimg'></form>
 
 </div>";
 
@@ -74,15 +46,14 @@ foreach ($sqlimg as $rowimg) {
 </div>
 
 <div class="">
-  <input type='file' name='files[]' multiple />
-  <button  class="m-4" type="submit" value="Submit" name="submit">modif</button>
+  <form action="<?php echo "editimg.php?id=".$id.""; ?>"  method="post" enctype='multipart/form-data'>
+    <input type='file' name='images[]' multiple />
+    <button  class="m-4" type="submit" value="Submit" name="editimg">modif</button>
+  </form>
+
 </div>
 
-    <div class="">
-      <input class="btn" type="submit" value="Submit">
-    </div>
 
-      </form>
 
   </div>
   </div>
