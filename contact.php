@@ -15,7 +15,7 @@
 
     <div class="p-2">
       <label class="col" for="email">Email</label>
-      <input id="email" class="col" type = "email" name="email" required pattern="^[A-Za-z0-9._%-]+@{1}[A-Za-z0-9.-]+\.{1}[A-Za-z]{2,4}$">
+      <input id="email" class="col" type = "email" name="email" required pattern="^[A-Za-z0-9._%-]+@{1}[A-Za-z0-9.-]+\.{1}[A-Za-z]{2,6}$">
     </div>
 
     <div class="p-2">

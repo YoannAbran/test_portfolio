@@ -17,12 +17,13 @@ include "config.php";
         if (!empty($nom) && strlen($nom) <= 20 && preg_match("#^[A-Za-z '-]+$#",$nom) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($message)){
 
 $to = "y.abran@codeur.online";
-$headers = 'From:'.$nom.'<'.$email.'>';1
+$headers = 'From:'.$nom.'<'.$email.'>';
 
 $subject = "test";
 
             if (mail($to,$subject,$message,$headers)) {
               echo "Email envoyé avec succès à $to ...";
+              header('Location : contact.php')
             }
             else {
                 echo "Échec de l'envoi de l'email...";

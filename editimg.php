@@ -41,6 +41,6 @@ if(isset($_POST['editimg'])){
 
    }
    echo "File upload successfully";
-   header('Location: projetest.php?id='.$id.'');
+   header('Location: projetest-'.$id.'.html');
    exit;
  }
