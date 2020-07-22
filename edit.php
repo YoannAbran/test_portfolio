@@ -21,7 +21,7 @@ $sql = $conn->prepare("SELECT projet.titre, projet.description, images.id_image,
                         INNER JOIN images ON projet.id_projet = images.idprojet
                         WHERE projet.id_projet= $id AND images.idprojet = $id ");
 $sql->execute();
-$row = $sql->fetch();
+$row = $sql->fetchAll();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }

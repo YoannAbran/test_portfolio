@@ -4,7 +4,9 @@
   include "edit.php";
 
 
+foreach ($row as $rowedit) {
 
+}
 
 ?>
 
@@ -16,10 +18,10 @@
 
     <form  action ="" class="p-5 text-center text-dark" method="post" id="formedit">
       <div class="p-2">
-        <input type="text" name="titreedit" value="<?php echo htmlspecialchars($row['titre']) ?>" size="50">
+        <input type="text" name="titreedit" value="<?php echo htmlspecialchars($rowedit['titre']) ?>" size="50">
       </div>
       <div class="p-2">
-        <textarea name="descredit" id="descredit" rows="8" cols="100" ><?php echo  htmlspecialchars($row['description']) ?></textarea>
+        <textarea name="descredit" id="descredit" rows="8" cols="100" ><?php echo  htmlspecialchars($rowedit['description']) ?></textarea>
       </div>
       <div class="p-2">
         <input class="btn" type="submit" value="Submit">
@@ -30,7 +32,7 @@
 
 <?php
 
-foreach ($sql as $rowimg) {
+foreach ($row as $rowimg) {
 
   echo"<div class='form-check d-flex flex-column align-items-center col-3'>
   <img class='py-3 col' src='".$rowimg['image']."' alt=''>
