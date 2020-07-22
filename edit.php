@@ -16,16 +16,19 @@ $stmt->execute();
 }
 
 try {
-$sql = $conn->prepare("SELECT titre, description FROM projet WHERE id_projet= $id ");
+$sql = $conn->prepare("SELECT projet.titre, projet.description, images.id_image, images.image, images.idprojet
+                        FROM projet
+                        INNER JOIN images ON projet.id_projet = images.idprojet
+                        WHERE projet.id_projet= $id AND images.idprojet = $id ");
 $sql->execute();
 $row = $sql->fetch();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-try {
-$sqlimg = $conn->prepare("SELECT id_image,image,idprojet FROM images WHERE idprojet= $id ");
-$sqlimg->execute();
-// $rowimg = $sqlimg->fetch();
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
+// try {
+// $sqlimg = $conn->prepare("SELECT id_image,image,idprojet FROM images WHERE idprojet= $id ");
+// $sqlimg->execute();
+// // $rowimg = $sqlimg->fetch();
+// } catch(PDOException $e) {
+//   echo "Connection failed: " . $e->getMessage();
+// }

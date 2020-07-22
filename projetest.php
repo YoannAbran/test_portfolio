@@ -30,7 +30,7 @@
 
 <?php
 
-foreach ($sqlimg as $rowimg) {
+foreach ($sql as $rowimg) {
 
   echo"<div class='form-check d-flex flex-column align-items-center col-3'>
   <img class='py-3 col' src='".$rowimg['image']."' alt=''>
