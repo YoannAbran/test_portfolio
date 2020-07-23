@@ -18,7 +18,7 @@ $stmt->execute();
 try {
 $sql = $conn->prepare("SELECT projet.titre, projet.description, images.id_image, images.image, images.idprojet
                         FROM projet
-                        INNER JOIN images ON projet.id_projet = images.idprojet
+                        LEFT JOIN images ON projet.id_projet = images.idprojet
                         WHERE projet.id_projet= $id AND images.idprojet = $id ");
 $sql->execute();
 $row = $sql->fetchAll();

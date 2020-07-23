@@ -11,7 +11,7 @@ foreach ($row as $rowedit) {
 <div class="bodyblack text-light pt-4">
 
   <div class="container d-flex justify-content-center">
-
+<?php var_dump($row); ?>
   <div class=" container d-flex flex-column align-items-center bgabout">
 
     <form  action ="" class="p-5 text-center text-dark" method="post" id="formedit">
