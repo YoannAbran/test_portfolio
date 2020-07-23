@@ -25,10 +25,3 @@ $row = $sql->fetchAll();
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 }
-// try {
-// $sqlimg = $conn->prepare("SELECT id_image,image,idprojet FROM images WHERE idprojet= $id ");
-// $sqlimg->execute();
-// // $rowimg = $sqlimg->fetch();
-// } catch(PDOException $e) {
-//   echo "Connection failed: " . $e->getMessage();
-// }

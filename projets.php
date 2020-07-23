@@ -20,72 +20,54 @@ foreach ($rows as $row) {
 }
 ?>
 
+<div class=" contain-carou container-fluid d-flex flex-column justify-content-center align-items-center">
 
-<div class="scene">
-  <div class="carousel">
+
+<div class="container-fluid scene d-flex justify-content-center align-items-center ">
+  <div class="container carousel d-flex justify-content-center align-items-center  ">
 <?php
 
   foreach ($rows as $row){
 if (!empty($row['image'])){
 
-  echo "	<div class='carousel__cell '>";
-  echo "<div class=' card shadow-sm bgcard text-dark' >";
-  	echo "<img src='".$row['image']."' class='card-img-top' alt='...'>";
-  	echo "<div class='card-body d-flex flex-column justify-content-between'>";
-  		echo "<h5 class='card-title'>".$row['titre']."</h5>";
-  		echo "<a href='projet.php?id=".$row['id_projet']."' class='btn'>GO !!</a>";
-
-  	echo "</div>
-  </div>
-  </div>";
+    echo "	<div class='carousel__cell '>";
+  	echo "<img class='img-fluid imgcarou' src='".$row['image']."'  alt='...'>";
+  	echo "</div>";
 
 }
-
 else{
 
-  echo "	<div class='carousel__cell'>";
-  echo "<div class=' card shadow-sm bgcard text-dark' >";
-    echo "<img src='img/projet.jpg' class='card-img-top' alt='...'>";
-    echo "<div class='card-body d-flex flex-column justify-content-between'>";
-      echo "<h5 class='card-title'>".$row['titre']."</h5>";
-      echo "<a href='projet.php?id=".$row['id_projet']."' class='btn'>GO !!</a>";
-
-    echo "</div>
-  </div>
-  </div>";
+    echo "	<div class='carousel__cell'>";
+    echo "<img class='img-fluid imgcarou' src='img/projet.jpg'  alt='...'>";
+    echo "</div>";
 }
 }
 	 ?>
-
-
+</div>
 </div>
 </div>
 <div class="carousel-options">
-  <!-- <p>
-    <label>
-      Cells
-      <input class="cells-range" type="range" min="3" max="15" value="3" />
-    </label>
-  </p> -->
   <p>
     <button class="previous-button">Previous</button>
     <button class="next-button">Next</button>
   </p>
-  <p>
+
+
+
+  <p class="d-none">
     Orientation:
     <label>
-      <input type="radio" name="orientation" value="horizontal" checked />
+      <input type="radio" name="orientation" value="horizontal" />
       horizontal
     </label>
     <label>
-      <input type="radio" name="orientation" value="vertical" />
+      <input type="radio" name="orientation" value="vertical" checked/>
       vertical
     </label>
   </p>
 </div>
-<script src="main.js">
 
-</script>
+<script src="main.js"></script>
 
 <?php
 include "footerwhite.php";

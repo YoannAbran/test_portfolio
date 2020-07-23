@@ -6,6 +6,7 @@ var cellWidth = carousel.offsetWidth;
 var cellHeight = carousel.offsetHeight;
 var isHorizontal = true;
 var rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+
 var radius, theta;
 // console.log( cellWidth, cellHeight );
 
